@@ -637,7 +637,7 @@ def command_update(options):
         print('reading in sources list data from %s' % (sources_list_dir))
         sources_cache_dir = get_sources_cache_dir()
         try:
-            if os.geteuid() == 0:
+            if os.name == 'posix' and os.geteuid() == 0:
                 print("Warning: running 'rosdep update' as root is not recommended.", file=sys.stderr)
                 print("  You should run 'sudo rosdep fix-permissions' and invoke 'rosdep update' again without sudo.", file=sys.stderr)
         except AttributeError:
